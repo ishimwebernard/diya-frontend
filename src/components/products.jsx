@@ -22,20 +22,18 @@ export default function Products(){
             let wholeData = dataresults.data
             wholeData.forEach((element, index) => {
                 internalGraphics.push(
-                    <tr className={index%2 == 0 ? "":"bg-gray-100 border-solid border-2"}>
-                    <td className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                    {element.ItemName}
-                    </td>
-                    <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                    {element.Category}
-                    </th>
-                    <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                    {element.CostPrice}
-                    </th>
-                    <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                    {element.SellingPrice}
-                    </th>
-                </tr>
+                <div className='aspect-h-1 aspect-w-1 cursor-pointer rounded-md p-2 hover:bg-gray-200'>
+                  <img src="https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg" className='w-full'/>
+                  <div className='flex justify-between'>
+                    <p className='mt-1 text-md text-gray-500'>{element.ItemName}</p>
+                    <p className='text-md font-medium text-gray-900'>Rwf {element.SellingPrice}</p>
+                  </div>
+                  <p className='italic'>{element.Category}</p>
+                <div className='flex justify-center gap-2 m-2'>
+                  <p className='p-2 bg-green-800 font-bold rounded-md text-white w-1/3 text-center'>Edit</p>
+                  <p className='p-2 bg-red-800 font-bold rounded-md text-white w-1/3 text-center'>Delete</p>
+                </div>
+                </div>
                 )
             });
             console.log(dataresults.data)
@@ -225,22 +223,8 @@ export default function Products(){
                         setModalVisible(!modalVisible)
                     }} className="rounded-md bg-lime-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add Product</button>
                 </div>
-                <table class="rounded-sm mt-3">
-                    <tr className="bg-gray-100 place-items-stretch">
-                        <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                        ITEM NAME
-                        </th>
-                        <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                        CATEGORY
-                        </th>
-                        <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                        SELLING PRICE
-                        </th>
-                        <th className="tracking-wide font-bold  p-4 text-left cursor-pointer">
-                        COST PRICE
-                        </th>
-                    </tr>
-                   
+                <table class="rounded-sm mt-3 grid grid-cols-4 gap-2">
+
                         {graphicsItems}
                   
                

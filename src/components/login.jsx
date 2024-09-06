@@ -4,7 +4,6 @@ import React, {useState} from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import Logo from '../assets/logo11.png'
 
-
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('')
@@ -105,5 +104,5 @@ export default function Login() {
         </div>
       </>
     )
-  }
+}
   
