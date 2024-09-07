@@ -9,6 +9,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [principal, setPrincipal] = useState('')
   return (
       <>
         <Toaster />
@@ -93,10 +94,21 @@ export default function SignUp() {
                     name="password"
                     type="password"
                     required
-                    autoComplete="current-password"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
+                <p className='text-sm font-semibold'>Reference Number</p>
+                <p className='text-sm font-light'>This is the code given to you by a friend who wants you to pursue the business with us. Please leave the space blank if you don't have one</p>
+                <div className="mt-2">
+                  <input onChange={(e)=>{
+                    setPrincipal(e.target.value)
+                  }}
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+
+
               </div>
   
               <div>
@@ -107,7 +119,7 @@ export default function SignUp() {
                     try{
                       const signUp = await axios({
                         method: 'post',
-                        data: {phoneNumber, password, firstName, lastName, userType: '1'},
+                        data: {phoneNumber, password, firstName, lastName, userType: '1', principal},
                         url: 'http://localhost:3000/account/signup'
                       })
                       toast.success('Succesfully Created an account for you!')
