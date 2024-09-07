@@ -104,7 +104,6 @@ export default function Products(){
                 </label>
                 <div className="mt-2">
                   <input onChange={(e)=>{
-
                     setCategory(e.target.value)
                   }}
                  

@@ -21,7 +21,7 @@ export default function SignUp() {
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Create an Account at Diya
+              Create an Account at Ago
             </h2>
           </div>
   
@@ -114,13 +114,22 @@ export default function SignUp() {
               <div>
                 <button
                   onClick={async()=>{
-                    console.log({phoneNumber, password, firstName, lastName, userType: '1'})
+                    console.log({phoneNumber, password, firstName, lastName, userType: '1', principal})
 
                     try{
                       const signUp = await axios({
                         method: 'post',
                         data: {phoneNumber, password, firstName, lastName, userType: '1', principal},
                         url: 'http://localhost:3000/account/signup'
+                      })
+
+                      const addasChildren = await axios({
+                        method: 'post',
+                        data: {
+                          phoneNumber: principal,
+                          childPhoneNumber: phoneNumber
+                        },
+                        url: 'http://localhost:3000/account/addChildren'
                       })
                       toast.success('Succesfully Created an account for you!')
                     }catch(error){

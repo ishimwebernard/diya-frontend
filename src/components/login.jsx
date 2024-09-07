@@ -13,7 +13,7 @@ export default function Login() {
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
-              alt="Diya"
+              alt="Ago"
               src={Logo}
               className="mx-auto h-10 w-auto"
             />
@@ -78,13 +78,13 @@ export default function Login() {
                       })
                       toast.success('Succesfully Logged in')
                       console.log(signIn)
-                      window.location.href='/admin'
+                      localStorage.setItem('Ago-loged-in-user', phoneNumber)
+                      window.location.href='/myaccount'
                     }catch(error){
                       console.log(error)
                       if(error.response.data.message){
                            toast.error(error.response.data.message)
                       }
-                   
                     }
                   }}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import ShopKeeperSide from './shop-keeper-side';
 let graphicsItems = []
 
-export default function Products(){
+export default function Manager(){
     const [graphicsItems,setGraphicsItems] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
     const [alertModal, setAlertModal] = useState(false)

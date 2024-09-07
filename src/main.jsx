@@ -9,6 +9,7 @@ import Admin from './components/admin.jsx'
 import Products from './components/products.jsx'
 import Orders from './components/orders.jsx'
 import CustomerProducts from './components/customerProducts.jsx'
+import MyAccount from './components/myAccount.jsx'
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/customer/products",
     element: <CustomerProducts />
+  },
+  {
+    path: "/myaccount",
+    element: <MyAccount />
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
