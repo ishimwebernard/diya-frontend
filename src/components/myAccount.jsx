@@ -54,6 +54,8 @@ useEffect(()=>{
 
     getUserInfo();
 }, [])
+
+
     return (
         <div class="min-h-screen bg-gray-50/50 flex flex-row gap-0">
             <Toaster />

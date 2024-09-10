@@ -76,10 +76,20 @@ export default function Login() {
                         data: {phoneNumber, password},
                         url: 'http://localhost:3000/account/login'
                       })
+                      console.log(signIn)
                       toast.success('Succesfully Logged in')
                       console.log(signIn)
-                      localStorage.setItem('Ago-loged-in-user', phoneNumber)
-                      window.location.href='/myaccount'
+                      if (signIn.data.role == 1)
+                      {
+                        localStorage.setItem('Ago-loged-in-user', phoneNumber)
+                        window.location.href='/';
+                      }
+                      else if(signIn.data.role === 2){
+                        localStorage.setItem('Ago-loged-in-user-manager', phoneNumber)
+                        window.location.href='/products'
+                        console.log("Manager")
+                      }
+  
                     }catch(error){
                       console.log(error)
                       if(error.response.data.message){
