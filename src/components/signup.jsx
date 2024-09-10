@@ -123,14 +123,6 @@ export default function SignUp() {
                         url: 'http://localhost:3000/account/signup'
                       })
 
-                      const addasChildren = await axios({
-                        method: 'post',
-                        data: {
-                          phoneNumber: principal,
-                          childPhoneNumber: phoneNumber
-                        },
-                        url: 'http://localhost:3000/account/addChildren'
-                      })
                       toast.success('Succesfully Created an account for you!')
                     }catch(error){
                       console.log(error)
