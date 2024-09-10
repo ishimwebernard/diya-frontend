@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
 import '../App.css'
 import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 
@@ -11,7 +12,16 @@ const navigation = [
 
 
 export default function Home(){
-  
+  const [graphicsItems,setGraphicsItems] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
+  const [alertModal, setAlertModal] = useState(false)
+  const [ItemName, setItemName] = useState('')
+  const [Category, setCategory] = useState('')
+  const [CostPrice, setCostPrice] = useState('')
+  const [SellingPrice, setSellingPrice] = useState('')
+  const [toDelete, setToDelete] = useState({ItemName: 'None'})
+
+
   useEffect(()=>{
     async function PopulateTable(){
         let internalGraphics = []
@@ -29,13 +39,11 @@ export default function Home(){
                 <p className='text-md font-medium text-gray-900'>Rwf {element.SellingPrice}</p>
               </div>
               <p className='italic'>{element.Category}</p>
-            <div className='flex justify-center gap-2 m-2'>
-              <p className='p-2 bg-green-800 font-bold rounded-md text-white w-1/3 text-center'>Edit</p>
-              <p className='p-2 bg-red-800 font-bold rounded-md text-white w-1/3 text-center' onClick={()=>{
-                setToDelete(element)
-                setAlertModal(true)
-              }}>Delete</p>
-            </div>
+              <div className='flex justify-center px-2 py-4 bg-gray-300'>
+                <p className='text-gray-800 font-semibold text-sm'>
+                  Add to Cart
+                </p>
+              </div>
             </div>
             )
         });
@@ -51,7 +59,7 @@ export default function Home(){
 
     return (
         <div className="bg-white">
-        <header className="absolute inset-x-0 top-0 z-50 font-roboto">
+        <header className=" inset-x-0 top-0 z-50 font-roboto">
           <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
             <div className="flex lg:flex-1">
               <a href="#" className="-m-1.5 p-1.5">
@@ -133,7 +141,12 @@ export default function Home(){
             </DialogPanel>
           </Dialog>
         </header>
+        <div class="rounded-sm mt-3 grid grid-cols-4 gap-2">
 
+          {graphicsItems}
+
+
+      </div>
 
       </div>
     )
