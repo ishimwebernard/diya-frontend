@@ -11,6 +11,8 @@ import Orders from './components/orders.jsx'
 import CustomerProducts from './components/customerProducts.jsx'
 import MyAccount from './components/myAccount.jsx'
 import Manager from './components/manager.jsx'
+import Customer from './components/customer.jsx'
+import CustomerOrders from './components/customer-orders.jsx'
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
   {
     path: "/manager",
     element: <Manager />
+  },
+  {
+    path: "/customer/profile",
+    element: <Customer />
+  },
+  {
+    path: "/customer/orders",
+    element: <CustomerOrders />
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
