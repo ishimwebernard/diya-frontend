@@ -14,13 +14,7 @@ const navigation = [
 
 export default function Home(){
   const [graphicsItems,setGraphicsItems] = useState([])
-  const [modalVisible, setModalVisible] = useState(false)
-  const [alertModal, setAlertModal] = useState(false)
-  const [ItemName, setItemName] = useState('')
-  const [Category, setCategory] = useState('')
-  const [CostPrice, setCostPrice] = useState('')
-  const [SellingPrice, setSellingPrice] = useState('')
-  const [toDelete, setToDelete] = useState({ItemName: 'None'})
+  const [alertModal, setAlertModal] = useState(true)
   const [toshow, setToShow] = useState(
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
     <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
@@ -96,6 +90,21 @@ export default function Home(){
 
     return (
         <div className="bg-white">
+                      {alertModal ? <>
+            <div className="w-screen h-screen bg-gray-400 z-10 absolute p-12 items-center bg-opacity-50 flex justify-center">
+              <div className='bg-white rounded-xl p-4 flex flex-col gap-4'>
+                <p>Please login to add to cart</p>
+                <div className='flex flex-row justify-end gap-2 '>
+                  <p className='p-2 bg-slate-300 rounded-md font-bold cursor-pointer' onClick={()=>{
+                    setAlertModal(false)
+                  }}>Cancel</p>
+                  <Link to='/login'>
+                  <p className='p-2 bg-red-600 rounded-md font-bold cursor-pointer text-white'>Login</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            </>: <></>}
         <header className=" inset-x-0 top-0 z-50 font-roboto">
 
           <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
