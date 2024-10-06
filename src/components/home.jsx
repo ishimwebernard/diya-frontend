@@ -43,6 +43,7 @@ export default function Home(){
               phoneNumber: localSto
             }
           })
+          console.log(userDetails)
                 setToShow(
 <Link to="/customer/profile">
 <div className='flex flex-row cursor-pointer flex-wrap w-auto p-2 hover:bg-gray-400 '>
@@ -51,7 +52,7 @@ export default function Home(){
 <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
 </svg>
         </div>
-        <p className='font-bold text-sm'>ISHIMWE Bernard</p>
+        <p className='font-bold text-sm'>{userDetails.data.userWithId.firstName} {userDetails.data.userWithId.lastName}</p>
       </div>
 </Link>
       )
@@ -67,13 +68,15 @@ export default function Home(){
         wholeData.forEach((element, index) => {
             internalGraphics.push(
             <div className='aspect-h-1 aspect-w-1 cursor-pointer rounded-md p-2 hover:bg-gray-200' id={index}>
-              <img src="https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg" className='w-full'/>
+              <img src={element.Picture == 'none' ? "https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg":element.Picture} className='w-full aspect-square'/>
               <div className='flex justify-between'>
                 <p className='mt-1 text-md text-gray-500'>{element.ItemName}</p>
                 <p className='text-md font-medium text-gray-900'>Rwf {element.SellingPrice}</p>
               </div>
               <p className='italic'>{element.Category}</p>
-              <div className='flex justify-center px-2 py-4 bg-gray-300'>
+              <div className='flex justify-center px-2 py-4 bg-gray-300' onClick={async()=>{
+                  
+              }}>
                 <p className='text-gray-800 font-semibold text-sm'>
                   Add to Cart
                 </p>

@@ -13,6 +13,7 @@ export default function Manager(){
     const [CostPrice, setCostPrice] = useState('')
     const [SellingPrice, setSellingPrice] = useState('')
     const [toDelete, setToDelete] = useState({ItemName: 'None'})
+    const [Picture, setPicture] =  useState('')
 
  useEffect(()=>{
         async function PopulateTable(){
@@ -113,13 +114,29 @@ export default function Manager(){
                   />
                 </div>
               </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  Picture Link
+                </label>
+                <div className="mt-2">
+                  <input onChange={(e)=>{
+
+                    setPicture(e.target.value)
+                  }}
+                 
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
               <button onClick={async()=>{
                     try{
                         const result = await axios({
                             method: 'post',
                             url: 'http://localhost:3000/product/create',
                             data: {
-                                    ItemName,Category,CostPrice,SellingPrice, Picture: 'none'
+                                    ItemName,Category,CostPrice,SellingPrice, Picture
                             }
                         })
                         

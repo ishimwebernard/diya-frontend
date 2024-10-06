@@ -37,6 +37,28 @@ export default function CustomerSide(props){
             </Link>
                
             </div>
+
+            
+            <div className="flex justify-start gap-2 items-center rounded-lg p-2 cursor-pointer hover:bg-gray-100"
+             onClick={()=>{
+                localStorage.removeItem("Ago-loged-in-user")
+                window.location.href='/'
+             }}
+             
+             >
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3" />
+</svg>
+
+
+
+      
+             <p className='text-sm font-semibold text-gray-600 '>
+                    Log Out
+                </p>
+     
+               
+            </div>
         </div>
     )
 }
