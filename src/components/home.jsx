@@ -3,18 +3,19 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import '../App.css'
-import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 const navigation = [
     { name: 'Products', href: 'products' },
     { name: 'Company', href: '#' },
+    { name: 'Shopping Cart', href: 'cart'}
   ]
 
 
 export default function Home(){
   const [graphicsItems,setGraphicsItems] = useState([])
-  const [alertModal, setAlertModal] = useState(true)
+  const [alertModal, setAlertModal] = useState(false)
+  const [userActive, setUserActive] = useState('nothing')
   const [toshow, setToShow] = useState(
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
     <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
@@ -22,12 +23,19 @@ export default function Home(){
     </a>
   </div>
   )
-
+  const addToCart = () => {
+    console.log(userActive)
+    if (userActive == 'nothing'){
+      setAlertModal(true)
+    }
+  }
 
   useEffect(()=>{
     async function PopulateTable(){
       let localSto = localStorage.getItem('Ago-loged-in-user');
       console.log(localSto)
+      setUserActive(localSto)
+
       // Get the active user with localstorage
       if (localSto){
           const userDetails = await axios({
@@ -48,8 +56,7 @@ export default function Home(){
         </div>
         <p className='font-bold text-sm'>{userDetails.data.userWithId.firstName} {userDetails.data.userWithId.lastName}</p>
       </div>
-</Link>
-      )
+</Link>)
       }
 
 
@@ -69,9 +76,11 @@ export default function Home(){
               </div>
               <p className='italic'>{element.Category}</p>
               <div className='flex justify-center px-2 py-4 bg-gray-300' onClick={async()=>{
-                  
+                addToCart()
               }}>
-                <p className='text-gray-800 font-semibold text-sm'>
+                <p className='text-gray-800 font-semibold text-sm' onClick={()=>{
+         
+                }}>
                   Add to Cart
                 </p>
               </div>
@@ -90,7 +99,7 @@ export default function Home(){
 
     return (
         <div className="bg-white">
-                      {alertModal ? <>
+          {alertModal ? <>
             <div className="w-screen h-screen bg-gray-400 z-10 absolute p-12 items-center bg-opacity-50 flex justify-center">
               <div className='bg-white rounded-xl p-4 flex flex-col gap-4'>
                 <p>Please login to add to cart</p>
@@ -101,6 +110,7 @@ export default function Home(){
                   <Link to='/login'>
                   <p className='p-2 bg-red-600 rounded-md font-bold cursor-pointer text-white'>Login</p>
                   </Link>
+               
                 </div>
               </div>
             </div>
