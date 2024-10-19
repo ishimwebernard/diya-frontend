@@ -10,12 +10,44 @@ const navigation = [
     { name: 'Company', href: '#' },
     { name: 'Shopping Cart', href: 'cart'}
   ]
+const ProductSet = function({element, index}){
+  localStorage.setItem("mycart", "")
+  const [myText, setMyText] = useState('Add To Cart')
 
+  return (
+    <div className='aspect-h-1 aspect-w-1 cursor-pointer rounded-md p-2 hover:bg-gray-200' id={index}>
+    <img src={element.Picture == 'none' ? "https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg":element.Picture} className='w-full aspect-square'/>
+    <div className='flex justify-between'>
+      <p className='mt-1 text-md text-gray-500'>{element.ItemName}</p>
+      <p className='text-md font-medium text-gray-900'>Rwf {element.SellingPrice}</p>
+    </div>
+    <p className='italic'>{element.Category}</p>
+    <div className='flex justify-center px-2 py-4 bg-gray-300' onClick={async()=>{
+      setMyText("Added to Cart")
+      let existingCart = localStorage.getItem('mycart')
+      if (existingCart == "" || existingCart== null){
+        existingCart = "[" + existingCart + ",{ItemName:" +"\"" + element.ItemName + ",Price:"+element.SellingPrice+"}"
+      }else{
+          existingCart.replaceAll("]","")
+          existingCart = existingCart + ",{ItemName:" + element.ItemName + ",Price:"+element.SellingPrice+"}]"
+      }
+      localStorage.setItem('mycart', existingCart)
+    }}>
+      <p className='text-gray-800 font-semibold text-sm' onClick={()=>{
+
+      }}>
+        {myText}
+      </p>
+    </div>
+  </div>
+  )
+}
 
 export default function Home(){
   const [graphicsItems,setGraphicsItems] = useState([])
   const [alertModal, setAlertModal] = useState(false)
   const [userActive, setUserActive] = useState('nothing')
+  const [cartText, setCartText] = useState('')
   const [toshow, setToShow] = useState(
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
     <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
@@ -58,8 +90,6 @@ export default function Home(){
       </div>
 </Link>)
       }
-
-
         let internalGraphics = []
         const dataresults = await axios({
             method:'get',
@@ -68,23 +98,7 @@ export default function Home(){
         let wholeData = dataresults.data
         wholeData.forEach((element, index) => {
             internalGraphics.push(
-            <div className='aspect-h-1 aspect-w-1 cursor-pointer rounded-md p-2 hover:bg-gray-200' id={index}>
-              <img src={element.Picture == 'none' ? "https://res.cloudinary.com/bn47/image/upload/v1609963683/sample.jpg":element.Picture} className='w-full aspect-square'/>
-              <div className='flex justify-between'>
-                <p className='mt-1 text-md text-gray-500'>{element.ItemName}</p>
-                <p className='text-md font-medium text-gray-900'>Rwf {element.SellingPrice}</p>
-              </div>
-              <p className='italic'>{element.Category}</p>
-              <div className='flex justify-center px-2 py-4 bg-gray-300' onClick={async()=>{
-                addToCart()
-              }}>
-                <p className='text-gray-800 font-semibold text-sm' onClick={()=>{
-         
-                }}>
-                  Add to Cart
-                </p>
-              </div>
-            </div>
+              <ProductSet element={element}/>
             )
         });
         console.log(dataresults.data)
