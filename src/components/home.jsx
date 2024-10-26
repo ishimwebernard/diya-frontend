@@ -11,7 +11,6 @@ const navigation = [
     { name: 'Shopping Cart', href: 'cart'}
   ]
 const ProductSet = function({element, index}){
-  localStorage.setItem("mycart", "")
   const [myText, setMyText] = useState('Add To Cart')
 
   return (
@@ -26,10 +25,10 @@ const ProductSet = function({element, index}){
       setMyText("Added to Cart")
       let existingCart = localStorage.getItem('mycart')
       if (existingCart == "" || existingCart== null){
-        existingCart = "[" + existingCart + ",{ItemName:" +"\"" + element.ItemName + ",Price:"+element.SellingPrice+"}"
+        existingCart = "[" + "{\"ItemName\":" +"\"" + element.ItemName +"\""+ ",\"Price\":" +element.SellingPrice + "}]"
       }else{
           existingCart.replaceAll("]","")
-          existingCart = existingCart + ",{ItemName:" + element.ItemName + ",Price:"+element.SellingPrice+"}]"
+          existingCart = existingCart.slice(0,-1) + ",{\"ItemName\":" +"\"" + element.ItemName +"\"" + ",\"Price\":"+element.SellingPrice+"}]"
       }
       localStorage.setItem('mycart', existingCart)
     }}>
@@ -105,7 +104,7 @@ export default function Home(){
         setGraphicsItems(internalGraphics)
     }
 
-
+    localStorage.setItem('mycart', "")
     PopulateTable()
 },[])
 
