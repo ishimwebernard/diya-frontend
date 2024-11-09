@@ -207,12 +207,12 @@ export default function Home(){
             </DialogPanel>
           </Dialog>
         </header>
-        <div class="rounded-sm mt-3 grid grid-cols-4 gap-2">
-
+        <div className='flex flex-col w-full justify-center items-center'>
+        <div class="rounded-sm mt-3 grid grid-cols-4 gap-2 w-3/4">
           {graphicsItems}
-
-
       </div>
+
+        </div>
 
       </div>
     )
