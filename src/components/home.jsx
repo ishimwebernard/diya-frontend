@@ -78,7 +78,8 @@ export default function Home(){
           })
           console.log(userDetails)
                 setToShow(
-<Link to="/customer/profile">
+                  <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
+                    <Link to="/customer/profile">
 <div className='flex flex-row cursor-pointer flex-wrap w-auto p-2 hover:bg-gray-400 '>
         <div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -87,7 +88,9 @@ export default function Home(){
         </div>
         <p className='font-bold text-sm'>{userDetails.data.userWithId.firstName} {userDetails.data.userWithId.lastName}</p>
       </div>
-</Link>)
+</Link>
+                  </div>)
+
       }
         let internalGraphics = []
         const dataresults = await axios({
@@ -217,7 +220,7 @@ export default function Home(){
                       Earn while you spend! Yes, with Ago shopping you can get profit from your colleagues and get the chance of getting a loan from the shop.
                     </p>
                     <p className='p-4 font-bold leading-tight mt-6 bg-gray-200 text-gray-800 w-fit'>
-                      Get Started
+                    <a href="/login" >Get Started</a> 
                     </p>
                     </div>
                 </div>
