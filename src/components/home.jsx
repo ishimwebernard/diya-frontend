@@ -136,8 +136,8 @@ export default function Home(){
                 <span className="sr-only">Your Company</span>
                 <img
                   alt=""
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  className="h-8 w-auto"
+                  src="https://res.cloudinary.com/bn47/image/upload/v1731163688/ago-mono-logo_oe934b.png"
+                  className="h-16 w-auto"
                 />
               </a>
             </div>
