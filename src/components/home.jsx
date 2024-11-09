@@ -207,6 +207,21 @@ export default function Home(){
             </DialogPanel>
           </Dialog>
         </header>
+        <section className="w-screen h-screen bg-[url('https://res.cloudinary.com/bn47/image/upload/v1731153180/nunu_sjf2bc.png')]">
+                <div className='bg-gray-800/50 w-full h-full flex flex-col justify-center items-left px-12'>
+                    <p className='text-6xl font-bold text-gray-200'>
+                      Shop together with confidence!
+                    </p>
+                    <div className='w-1/2 '>
+                    <p className='text-sm text-gray-100'>
+                      Earn while you spend! Yes, with Ago shopping you can get profit from your colleagues and get the chance of getting a loan from the shop.
+                    </p>
+                    <p className='p-4 font-bold leading-tight mt-6 bg-gray-200 text-gray-800 w-fit'>
+                      Get Started
+                    </p>
+                    </div>
+                </div>
+        </section>
         <div className='flex flex-col w-full justify-center items-center'>
         <div class="rounded-sm mt-3 grid grid-cols-4 gap-2 w-3/4">
           {graphicsItems}
